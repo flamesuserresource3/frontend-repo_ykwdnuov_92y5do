@@ -15,7 +15,7 @@ export default function AboutContact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
         <div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">Tentang Kami</h2>
@@ -26,16 +26,17 @@ export default function AboutContact() {
           </p>
           <div className="mt-6 space-y-3 text-sm">
             <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 text-slate-700 hover:text-[#5f2ded]">
-              <Phone size={18} /> +{WHATSAPP_NUMBER}
+              <Phone size={18} aria-hidden /> +{WHATSAPP_NUMBER}
             </a>
             <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 text-slate-700 hover:text-[#5f2ded]">
-              <Mail size={18} /> {EMAIL}
+              <Mail size={18} aria-hidden /> {EMAIL}
             </a>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Halo Tajawaz Studio!')}`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex w-fit mt-2 items-center justify-center rounded-lg bg-[#5f2ded] text-white px-4 py-2 text-sm font-semibold shadow hover:bg-[#5122d9]"
+              aria-label="Chat via WhatsApp"
             >
               Chat via WhatsApp
             </a>
@@ -45,10 +46,11 @@ export default function AboutContact() {
           <div className="rounded-2xl p-6 bg-slate-50 ring-1 ring-slate-200">
             <h3 className="text-xl font-semibold text-slate-900">Formulir Kontak</h3>
             <p className="text-slate-600 text-sm mt-1">Tanyakan paket atau konsultasikan kebutuhan Anda.</p>
-            <form onSubmit={onSubmit} className="mt-6 space-y-4">
+            <form onSubmit={onSubmit} className="mt-6 space-y-4" aria-label="Formulir kontak">
               <div>
-                <label className="block text-sm font-medium text-slate-700">Nama</label>
+                <label htmlFor="name" className="block text-sm font-medium text-slate-700">Nama</label>
                 <input
+                  id="name"
                   type="text"
                   required
                   value={form.name}
@@ -58,8 +60,9 @@ export default function AboutContact() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email</label>
                 <input
+                  id="email"
                   type="email"
                   required
                   value={form.email}
@@ -69,8 +72,9 @@ export default function AboutContact() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700">Pesan</label>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700">Pesan</label>
                 <textarea
+                  id="message"
                   required
                   rows={4}
                   value={form.message}
@@ -79,7 +83,7 @@ export default function AboutContact() {
                   placeholder="Ceritakan kebutuhan website Anda"
                 />
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button type="submit" className="inline-flex items-center justify-center rounded-lg bg-slate-900 text-white px-5 py-2.5 text-sm font-semibold hover:bg-slate-800">
                   Kirim via Email
                 </button>
